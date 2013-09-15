@@ -4,7 +4,7 @@
 # or copy at http://opensource.org/licenses/MIT)
 
 cmake_minimum_required (VERSION 2.6)
-project (CppSkeleton)
+project (CppAlgorithms)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
@@ -12,25 +12,25 @@ if(MSVC)
 endif()
 
 # add the application executable
-add_executable (CppSkeleton
+add_executable (CppAlgorithms
  src/main.cpp
- src/foo.cpp src/foo.h)
+ src/hash.cpp src/hash.h)
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
 add_subdirectory (googletest) 
 include_directories ("${PROJECT_SOURCE_DIR}/googletest/include")
 
 # add the test executable
-add_executable (TestSkeleton
- src/foo.cpp src/foo.h src/foo_test.cpp)
-target_link_libraries (TestSkeleton gtest_main)
- 
+add_executable (TestAlgorithms
+ src/hash.cpp src/hash.h src/hash_test.cpp)
+target_link_libraries (TestAlgorithms gtest_main)
+
 # add a "test" target:
 enable_testing()
 
 # does the application runs
-add_test (ApplicationRuns CppSkeleton)
+add_test (ApplicationRuns CppAlgorithms)
 
 # does the tests pass
-add_test (TestsPass TestSkeleton)
+add_test (TestsPass TestAlgorithms)
 

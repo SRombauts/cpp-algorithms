@@ -1,9 +1,9 @@
-cpp-skeleton
+cpp-algorithms
 ------------
 
-![cpp-skeleton build status](https://api.travis-ci.org/SRombauts/cpp-skeleton.png "cpp-skeleton build status")
+![cpp-algorithms build status](https://api.travis-ci.org/SRombauts/cpp-algorithms.png "cpp-algorithms build status")
 
-A simple skeleton for C++ development with CMake and Google Test.
+Experimenting with well known algorithms and data structures.
 
 Copyright (c) 2013 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 
@@ -44,5 +44,5 @@ ctest .         # make test
 This project is continuously tested under Ubuntu Linux with the gcc and clang compilers
 using the Travis CI community service with the above CMake building and testing procedure.
 
-Detailed results can be seen online: https://travis-ci.org/SRombauts/cpp-skeleton
+Detailed results can be seen online: https://travis-ci.org/SRombauts/cpp-algorithms
 
