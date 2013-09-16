@@ -9,12 +9,15 @@ project (CppAlgorithms)
 if(MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+    add_definitions (/D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 # add the application executable
 add_executable (CppAlgorithms
  src/main.cpp
- src/hash.cpp src/hash.h)
+ src/hash.cpp src/hash.h
+ src/random.cpp src/random.h
+)
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
 add_subdirectory (googletest) 
@@ -22,7 +25,9 @@ include_directories ("${PROJECT_SOURCE_DIR}/googletest/include")
 
 # add the test executable
 add_executable (TestAlgorithms
- src/hash.cpp src/hash.h src/hash_test.cpp)
+ src/hash.cpp src/hash.h src/hash_test.cpp
+ src/random.cpp src/random.h src/random_test.cpp
+)
 target_link_libraries (TestAlgorithms gtest_main)
 
 # add a "test" target:
