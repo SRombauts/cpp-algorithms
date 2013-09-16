@@ -9,6 +9,8 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
+#include <cstddef>  // size_t
+
 /**
  * @brief Random utility functions.
  */
