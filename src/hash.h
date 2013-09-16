@@ -16,7 +16,12 @@ class Hash
 {
 public:
     /**
-     * @brief Simple and famous hash used by the sdbm public-domain database library.
+     * @brief Famous hash function used by the sdbm public-domain database library.
      */
     static unsigned long sdbm(const char* str);
+
+    /**
+     * @brief Famous hash function by Daniel J. Bernstein.
+     */
+    static unsigned long djb2(const char* str);
 };

@@ -11,7 +11,7 @@
 
 #include "hash.h"
 
-// Simple and famous hash used by the sdbm public-domain database library.
+// Famous hash function used by the sdbm public-domain database library.
 unsigned long Hash::sdbm(const char* str) {
     unsigned long hash = 0;
     int c;
@@ -23,3 +23,14 @@ unsigned long Hash::sdbm(const char* str) {
     return hash;
 }
 
+// Famous hash function by Daniel J. Bernstein.
+unsigned long Hash::djb2(const char* str) {
+    unsigned long hash = 5381;
+    int c;
+
+    while (c = *str++) {
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+    }
+
+    return hash;
+}
