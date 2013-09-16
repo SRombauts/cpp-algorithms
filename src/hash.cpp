@@ -17,19 +17,21 @@ unsigned long Hash::sdbm(const char* str) {
     int c;
 
     while (c = *str++) {
+        // hash = hash * 65599 + c
         hash = c + (hash << 6) + (hash << 16) - hash;
     }
 
     return hash;
 }
 
-// Famous hash function by Daniel J. Bernstein.
+// Famous very simple hash function by Daniel J. Bernstein.
 unsigned long Hash::djb2(const char* str) {
     unsigned long hash = 5381;
     int c;
 
     while (c = *str++) {
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+        // hash = hash * 33 + c
+        hash = ((hash << 5) + hash) + c; 
     }
 
     return hash;
