@@ -1,5 +1,16 @@
 /**
- * @brief Simple Hash class for testing purpose
+ * @file    hash.h
+ * @ingroup CppAlgorithms
+ * @brief   Simple Hash functions.
+ *
+ * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ *
+ * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
+ * or copy at http://opensource.org/licenses/MIT)
+ */
+
+/**
+ * @brief Simple Hash functions.
  */
 class Hash
 {
