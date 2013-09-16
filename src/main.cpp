@@ -10,12 +10,14 @@
  */
 
 #include "hash.h"
+#include "random.h"
 
 #include <iostream>
+#include <iomanip>  // std::setw
 
-int main()
-{
-    std::cout << "Hash::sdbm('test')=" << Hash::sdbm("test") << std::endl;
+
+int main() {
+    std::cout << "Hash::sdbm('test')=" << std::hex << std::setw(8) << std::setfill('0') << Hash::sdbm("test") << std::endl;
 
     return 0;
 }
