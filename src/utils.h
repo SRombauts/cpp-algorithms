@@ -16,3 +16,14 @@
 #define DISALLOW_COPY_AND_ASSIGN(TypeName) \
   TypeName(const TypeName&);               \
   void operator=(const TypeName&)
+
+// A macro to enable the use of the nullptr keyword, and use NULL on older compiler
+#ifdef _MSC_VER
+#if _MSC_VER < 1600
+#define nullptr NULL
+#endif
+#else
+#ifndef __GXX_EXPERIMENTAL_CXX0X__
+#define nullptr NULL
+#endif
+#endif

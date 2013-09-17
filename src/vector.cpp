@@ -13,12 +13,12 @@
 
 
 // Public default constructor
-Vector::Vector() : array_(NULL) {
+Vector::Vector() : array_(nullptr) {
 }
 
 // Public destructor (not virtual)
 Vector::~Vector() {
-   if (array_ != NULL) {
+   if (array_ != nullptr) {
       delete [] array_;
    }
 }

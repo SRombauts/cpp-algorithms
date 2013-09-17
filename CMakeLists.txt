@@ -10,6 +10,8 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
     add_definitions (/D_CRT_SECURE_NO_WARNINGS)
+else()
+    add_definitions (-std=c++0x)  # -std=c++11
 endif()
 
 # add the application executable
