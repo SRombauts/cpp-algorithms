@@ -9,15 +9,13 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "hash.h"
-#include "random.h"
+#include <cstdio>
 
-#include <iostream>
-#include <iomanip>  // std::setw
+#include "algo/hash.h"
 
 
 int main() {
-    std::cout << "Hash::sdbm('test')=" << std::hex << std::setw(8) << std::setfill('0') << Hash::sdbm("test") << std::endl;
+  printf("Hash::sdbm('test')=%lx\n", Hash::sdbm("test"));
 
-    return 0;
+  return 0;
 }

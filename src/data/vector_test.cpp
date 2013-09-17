@@ -1,6 +1,6 @@
 /**
- * @file    vector.cpp
- * @ingroup CppAlgorithms
+ * @file    vector_test.cpp
+ * @ingroup data
  * @brief   Implementation of dynamic array (a "vector").
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -9,16 +9,14 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "vector.h"
+#include "data/vector.h"
+
+#include <limits>
+
+#include "algo/random.h"
+#include "gtest/gtest.h"
 
 
-// Public default constructor
-Vector::Vector() : array_(nullptr) {
-}
-
-// Public destructor (not virtual)
-Vector::~Vector() {
-   if (array_ != nullptr) {
-      delete [] array_;
-   }
+// Test Vector constructors.
+TEST(Vector, ctor) {
 }

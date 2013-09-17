@@ -1,6 +1,6 @@
 /**
  * @file    util.h
- * @ingroup CppAlgorithms
+ * @ingroup base
  * @brief   Shared utility macros and functions.
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -8,6 +8,8 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
+#ifndef SRC_BASE_UTILS_H_
+#define SRC_BASE_UTILS_H_
 
 #include <cstddef>
 
@@ -17,7 +19,7 @@
   TypeName(const TypeName&);               \
   void operator=(const TypeName&)
 
-// A macro to enable the use of the nullptr keyword, and use NULL on older compiler
+// A macro to enable the use of the nullptr keyword (NULL on older compiler)
 #ifdef _MSC_VER
 #if _MSC_VER < 1600
 #define nullptr NULL
@@ -27,3 +29,5 @@
 #define nullptr NULL
 #endif
 #endif
+
+#endif  // SRC_BASE_UTILS_H_

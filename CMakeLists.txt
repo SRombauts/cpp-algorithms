@@ -17,20 +17,25 @@ endif()
 # add the application executable
 add_executable (CppAlgorithms
  src/main.cpp
- src/hash.cpp src/hash.h
- src/random.cpp src/random.h
- src/vector.cpp src/vector.h
+ src/algo/hash.cpp src/algo/hash.h
+ src/algo/random.cpp src/algo/random.h
+ src/base/utils.h
+ src/data/vector.cpp src/data/vector.h
 )
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
 add_subdirectory (googletest) 
 include_directories ("${PROJECT_SOURCE_DIR}/googletest/include")
 
+include_directories ("${PROJECT_SOURCE_DIR}/src")
+
+
 # add the test executable
 add_executable (TestAlgorithms
- src/hash.cpp src/hash.h src/hash_test.cpp
- src/random.cpp src/random.h src/random_test.cpp
- src/vector.cpp src/vector.h src/vector_test.cpp
+ src/algo/hash.cpp src/algo/hash.h src/algo/hash_test.cpp
+ src/algo/random.cpp src/algo/random.h src/algo/random_test.cpp
+ src/base/utils.h
+ src/data/vector.cpp src/data/vector.h src/data/vector_test.cpp
 )
 target_link_libraries (TestAlgorithms gtest_main)
 
