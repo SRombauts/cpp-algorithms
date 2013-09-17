@@ -14,11 +14,10 @@
 // Famous hash function used by the sdbm public-domain database library.
 unsigned long Hash::sdbm(const char* str) {
     unsigned long hash = 0;
-    int c;
 
-    while (c = *str++) {
-        // hash = hash * 65599 + c
-        hash = c + (hash << 6) + (hash << 16) - hash;
+    for (unsigned int idx = 0; str[idx] != 0; idx++) {
+        // hash = hash * 65599 + char
+        hash = (hash << 6) + (hash << 16) - hash + str[idx];
     }
 
     return hash;
@@ -27,11 +26,10 @@ unsigned long Hash::sdbm(const char* str) {
 // Famous very simple hash function by Daniel J. Bernstein.
 unsigned long Hash::djb2(const char* str) {
     unsigned long hash = 5381;
-    int c;
 
-    while (c = *str++) {
+    for (unsigned int idx = 0; str[idx] != 0; idx++) {
         // hash = hash * 33 + c
-        hash = ((hash << 5) + hash) + c; 
+        hash = ((hash << 5) + hash) + str[idx];
     }
 
     return hash;
