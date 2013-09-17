@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+# Copyright (c) 2013 SÃ©bastien Rombauts (sebastien.rombauts@gmail.com)
 #
 # Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 # or copy at http://opensource.org/licenses/MIT)
@@ -17,6 +17,7 @@ add_executable (CppAlgorithms
  src/main.cpp
  src/hash.cpp src/hash.h
  src/random.cpp src/random.h
+ src/vector.cpp src/vector.h
 )
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
@@ -27,6 +28,7 @@ include_directories ("${PROJECT_SOURCE_DIR}/googletest/include")
 add_executable (TestAlgorithms
  src/hash.cpp src/hash.h src/hash_test.cpp
  src/random.cpp src/random.h src/random_test.cpp
+ src/vector.cpp src/vector.h src/vector_test.cpp
 )
 target_link_libraries (TestAlgorithms gtest_main)
 
