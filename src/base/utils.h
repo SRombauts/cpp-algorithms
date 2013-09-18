@@ -30,4 +30,9 @@
 #endif
 #endif
 
+// A macro for snprintf support in Visual Studio
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+
 #endif  // SRC_BASE_UTILS_H_

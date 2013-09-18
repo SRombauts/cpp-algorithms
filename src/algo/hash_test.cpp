@@ -15,6 +15,7 @@
 
 #include "gtest/gtest.h"
 #include "algo/random.h"
+#include "base/utils.h"
 
 
 // Test that hashsum of strings does change for any bit change
