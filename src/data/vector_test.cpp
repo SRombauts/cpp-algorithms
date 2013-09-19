@@ -32,71 +32,58 @@ TEST(Vector, Reserve) {
   EXPECT_EQ(0, vec1.GetCapacity());
   EXPECT_EQ(0, vec1.GetSize());
 
-  // TODO(SRO): test differents capacities, not all rounded => "for" loop!
+  // Test differents capacities, not all rounded
   for (size_t reserve = 1; reserve < 1025; ++reserve) {
      vec1.Reserve(reserve);
      EXPECT_GE(vec1.GetCapacity(), reserve);
      EXPECT_EQ(0, vec1.GetSize());
   }
-  EXPECT_GE(vec1.GetCapacity(), 1024);
   // Reserving a second time does nothing
   for (size_t reserve = 1; reserve < 1025; ++reserve) {
      vec1.Reserve(reserve);
-     EXPECT_GE(vec1.GetCapacity(), 1024);
+     EXPECT_GE(vec1.GetCapacity(), (size_t)1024);
   }
-
-  // Reserving in a vector of size not 0
-  Vector vec2;
-  vec2.Append(987);
-  vec2.Append(456);
-  vec2.Append(321);
-  EXPECT_GE(vec2.GetCapacity(), (size_t)3);
-  EXPECT_EQ(3, vec2.GetSize());
-  for (size_t reserve = 1; reserve < 1025; ++reserve) {
-     vec2.Reserve(reserve);
-     EXPECT_GE(vec2.GetCapacity(), reserve);
-     EXPECT_EQ(3, vec2.GetSize());
-  }
-  EXPECT_GE(vec1.GetCapacity(), 1024);
 }
 
-// Test Vector appending.
-TEST(Vector, Append) {
+// Test Vector appending and truncating.
+TEST(Vector, AppendTruncate) {
   Vector vec1;
-  vec1.Append(987);
-  // TODO(SRO):
-  EXPECT_GE(vec1.GetCapacity(), (size_t)1);
-  EXPECT_EQ(1, vec1.GetSize());
-  vec1.Append(654);
-  EXPECT_GE(vec1.GetCapacity(), (size_t)2);
-  EXPECT_EQ(2, vec1.GetSize());
-  vec1.Append(321);
-  EXPECT_GE(vec1.GetCapacity(), (size_t)3);
-  EXPECT_EQ(3, vec1.GetSize());
-}
-
-// Test Vector truncating.
-TEST(Vector, Truncate) {
-  Vector vec1;
-  vec1.Append(987);
-  vec1.Append(654);
-  vec1.Append(321);
-  const size_t capacity = vec1.GetCapacity();
-  EXPECT_EQ(3, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
-  vec1.Truncate(8);
-  EXPECT_EQ(3, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
-  vec1.Truncate(3);
-  EXPECT_EQ(3, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
-  vec1.Truncate(2);
-  EXPECT_EQ(2, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
-  vec1.Truncate(1);
-  EXPECT_EQ(1, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
+  // Append
+  for (size_t idx = 0; idx < 1024; ++idx) {
+    int     value = idx;
+    size_t  size  = idx+1;
+    vec1.Append(value);
+    EXPECT_EQ(size, vec1.GetSize());
+    EXPECT_EQ(value, vec1.At(idx));
+    EXPECT_GE(vec1.GetCapacity(), size);
+  }
+  const size_t final_capacity = vec1.GetCapacity();
+  // Recheck all values
+  for (size_t idx = 0; idx < 1024; ++idx) {
+    int value = idx;
+    EXPECT_EQ(value, vec1.At(idx));
+  }
+  // Truncate
+  for (size_t size = 1023; size > 0; --size) {
+    vec1.Truncate(size);
+    EXPECT_EQ(size, vec1.GetSize());
+    EXPECT_EQ(final_capacity, vec1.GetCapacity());
+  }
   vec1.Truncate(0);
   EXPECT_EQ(0, vec1.GetSize());
-  EXPECT_EQ(capacity, vec1.GetCapacity());
+  EXPECT_EQ(final_capacity, vec1.GetCapacity());
+  // Re-Append
+  for (size_t idx = 0; idx < 1024; ++idx) {
+    int     value = idx;
+    size_t  size  = idx+1;
+    vec1.Append(value);
+    EXPECT_EQ(size, vec1.GetSize());
+    EXPECT_EQ(value, vec1.At(idx));
+    EXPECT_EQ(final_capacity, vec1.GetCapacity());
+  }
+  // Recheck all values
+  for (size_t idx = 0; idx < 1024; ++idx) {
+    int value = idx;
+    EXPECT_EQ(value, vec1.At(idx));
+  }
 }

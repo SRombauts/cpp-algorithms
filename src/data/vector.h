@@ -21,7 +21,7 @@ class Vector {
   Vector();
   ~Vector();  // no need for virtual dtor
 
-  void Reserve(const size_t capacity);
+  void Reserve(const size_t new_capacity);
 
   void Append(const int value);
 
@@ -29,6 +29,8 @@ class Vector {
 
   const int& At(const size_t idx) const;
         int& At(const size_t idx);
+
+  // TODO(SRombauts): Find() + comments and complexity annotations
 
   inline size_t GetCapacity() {
     return capacity_;

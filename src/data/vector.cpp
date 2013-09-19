@@ -11,6 +11,9 @@
 
 #include "data/vector.h"
 
+#include <cstring>
+#include <cassert>
+
 // Public default constructor
 Vector::Vector()
     : array_(nullptr), capacity_(0), size_(0) {
@@ -23,35 +26,46 @@ Vector::~Vector() {
   }
 }
 
-void Vector::Reserve(const size_t capacity) {
-  if (capacity_ < capacity) {
-    // TODO(SRO): reserve
-    capacity_ = capacity;
+void Vector::Reserve(const size_t new_capacity) {
+  if (capacity_ < new_capacity) {
+    const int* old_array = array_;
+    // allocate a new array
+    array_    = new int[new_capacity]; // can throw std::bad_alloc
+    capacity_ = new_capacity;
+    // copy old datas, then destroy the old array
+    std::memcpy(array_, old_array, size_*sizeof(array_[0]));
+    delete [] old_array;
   }
 }
 
+#include <iostream>
+
 void Vector::Append(const int value) {
-  size_t next_size = size_ + 1;
-  // reserve if needed
-  Reserve(next_size);
-  // TODO(SRO): append !
-  size_ = next_size;
+  if (size_ == capacity_) {
+    // reserve more space if needed : 0,10,23,39,60,88,124,171,232,311,414,548,722,948,1242...
+    size_t new_capacity = static_cast<size_t>(capacity_ * 1.3 + 10);
+    Reserve(new_capacity);
+  }
+  // append value
+  array_[size_] = value;
+  size_ += 1;
 }
 
 void Vector::Truncate(const size_t size) {
   if (size < size_) {
-    // TODO(SRO): resize
+    // simply resize
     size_ = size;
   }
 }
 
 const int& Vector::At(const size_t idx) const {
-  // TODO(SRO): check bounds
+  // basic bound checking
+  assert(idx < size_);
   return array_[idx];
 }
 
 int& Vector::At(const size_t idx) {
-  // TODO(SRO): check bounds
+  // basic bound checking
   return array_[idx];
 }
 

@@ -13,7 +13,6 @@
 
 #include <cstdlib>  // rand_r()
 
-
 // Generate a printable alphanumeric character.
 char Random::GenChar() {
   static const char alphanum[] =
@@ -21,7 +20,7 @@ char Random::GenChar() {
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     "abcdefghijklmnopqrstuvwxyz";
 
-  return alphanum[rand() % (sizeof(alphanum) - 1)]; // NOLINT: rand_r() is not MSVC compatible
+  return alphanum[std::rand() % (sizeof(alphanum) - 1)];
 }
 
 // Generate a printable alphanumeric string.
