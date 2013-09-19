@@ -25,30 +25,33 @@ Vector::~Vector() {
 
 void Vector::Reserve(const size_t capacity) {
   if (capacity_ < capacity) {
-    // TODO: reserve
-    // capacity_ = size;
+    // TODO(SRO): reserve
+    capacity_ = capacity;
   }
 }
 
 void Vector::Append(const int value) {
-  // TODO: reserve if needed
-  //++size_;
+  size_t next_size = size_ + 1;
+  // reserve if needed
+  Reserve(next_size);
+  // TODO(SRO): append !
+  size_ = next_size;
 }
 
 void Vector::Truncate(const size_t size) {
   if (size < size_) {
-    // TODO: resize
-    //size_ = size;
+    // TODO(SRO): resize
+    size_ = size;
   }
 }
 
 const int& Vector::At(const size_t idx) const {
-  // TODO: check bounds
+  // TODO(SRO): check bounds
   return array_[idx];
 }
 
 int& Vector::At(const size_t idx) {
-  // TODO: check bounds
+  // TODO(SRO): check bounds
   return array_[idx];
 }
 

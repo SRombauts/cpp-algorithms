@@ -38,9 +38,9 @@ class Vector {
   }
 
  private:
-  int*    array_;     //!< Pointer to the underlying C-style heap-allocated array
-  size_t  capacity_;  //!< Capacity of the underlying array
-  size_t  size_;      //!< Size of the used part of the array
+  int*    array_;     // Pointer to the underlying C-style heap-allocated array
+  size_t  capacity_;  // Capacity of the underlying array
+  size_t  size_;      // Size of the used part of the array
 
   DISALLOW_COPY_AND_ASSIGN(Vector);
 };
