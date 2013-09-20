@@ -12,7 +12,7 @@
 #include "data/vector.h"
 
 #include <cstring>
-#include <cassert>
+#include <stdexcept>
 
 // Public default constructor
 Vector::Vector()
@@ -26,23 +26,21 @@ Vector::~Vector() {
   }
 }
 
-void Vector::Reserve(const size_t new_capacity) {
-  if (capacity_ < new_capacity) {
+void Vector::Reserve(const size_t capacity) {
+  if (capacity_ < capacity) {
     const int* old_array = array_;
     // allocate a new array
-    array_    = new int[new_capacity]; // can throw std::bad_alloc
-    capacity_ = new_capacity;
+    array_    = new int[capacity]; // can throw std::bad_alloc
+    capacity_ = capacity;
     // copy old datas, then destroy the old array
     std::memcpy(array_, old_array, size_*sizeof(array_[0]));
     delete [] old_array;
   }
 }
 
-#include <iostream>
-
 void Vector::Append(const int value) {
   if (size_ == capacity_) {
-    // reserve more space if needed : 0,10,23,39,60,88,124,171,232,311,414,548,722,948,1242...
+    // reserve more space if needed: 0,10,23,39,60,88,124,171,232,311,414,548...
     size_t new_capacity = static_cast<size_t>(capacity_ * 1.3 + 10);
     Reserve(new_capacity);
   }
@@ -59,13 +57,18 @@ void Vector::Truncate(const size_t size) {
 }
 
 const int& Vector::At(const size_t idx) const {
-  // basic bound checking
-  assert(idx < size_);
+  // basic boundary check
+  if (idx >= size_) {
+    throw std::out_of_range("Vector::At: idx >= size_");
+  }
   return array_[idx];
 }
 
 int& Vector::At(const size_t idx) {
-  // basic bound checking
+  // basic boundary check
+  if (idx >= size_) {
+    throw std::out_of_range("Vector::At: idx >= size_");
+  }
   return array_[idx];
 }
 

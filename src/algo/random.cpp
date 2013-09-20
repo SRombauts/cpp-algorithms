@@ -20,7 +20,7 @@ char Random::GenChar() {
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     "abcdefghijklmnopqrstuvwxyz";
 
-  return alphanum[std::rand() % (sizeof(alphanum) - 1)];
+  return alphanum[std::rand() % (sizeof(alphanum) - 1)]; // NOLINT
 }
 
 // Generate a printable alphanumeric string.
