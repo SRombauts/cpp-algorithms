@@ -9,8 +9,10 @@ project (CppAlgorithms)
 if(MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+    set(CCPPLINT_ARGS "--output=vs7")
     add_definitions (/D_CRT_SECURE_NO_WARNINGS)
 else()
+    set(CCPPLINT_ARGS "--output=eclipse")
     add_definitions (-std=c++0x)  # -std=c++11
 endif()
 
@@ -23,12 +25,16 @@ add_executable (CppAlgorithms
  src/data/vector.cpp src/data/vector.h
 )
 
+add_custom_target(cpplint
+ ALL
+ COMMAND python ${PROJECT_SOURCE_DIR}/cpplint.py ${CCPPLINT_ARGS} ${PROJECT_SOURCE_DIR}/src/*/* 
+)
+
 # add the subdirectory containing the CMakeLists.txt for the gtest library
 add_subdirectory (googletest) 
 include_directories ("${PROJECT_SOURCE_DIR}/googletest/include")
 
 include_directories ("${PROJECT_SOURCE_DIR}/src")
-
 
 # add the test executable
 add_executable (TestAlgorithms
