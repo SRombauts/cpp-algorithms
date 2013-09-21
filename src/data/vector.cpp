@@ -30,9 +30,9 @@ void Vector::Reserve(const size_t capacity) {
   if (capacity_ < capacity) {
     const int* old_array = array_;
     // allocate a new array
-    array_    = new int[capacity]; // can throw std::bad_alloc
+    array_    = new int[capacity];  // can throw std::bad_alloc
     capacity_ = capacity;
-    // copy old datas, then destroy the old array
+    // copy old data, then destroy the old array
     std::memcpy(array_, old_array, size_*sizeof(array_[0]));
     delete [] old_array;
   }

@@ -22,9 +22,9 @@
  */
 class Vector {
  public:
-  //! @brief Constructor
+  /// @brief Constructor
   Vector();
-  //! @brief Destructor: no need for virtual dtor
+  /// @brief Destructor: no need for virtual dtor
   ~Vector();
 
   /**
@@ -89,9 +89,9 @@ class Vector {
   }
 
  private:
-  int*    array_;     //!< Pointer to the underlying raw heap-allocated array
-  size_t  capacity_;  //!< Capacity of the underlying array
-  size_t  size_;      //!< Size of the used part of the array
+  int*    array_;     ///< Pointer to the underlying raw heap-allocated array
+  size_t  capacity_;  ///< Capacity of the underlying array
+  size_t  size_;      ///< Size of the used part of the array
 
   DISALLOW_COPY_AND_ASSIGN(Vector);
 };

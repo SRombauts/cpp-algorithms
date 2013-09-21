@@ -2315,9 +2315,11 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
         # ///
         # or they begin with multiple slashes followed by a space:
         # //////// Header comment
+        # or a Doxygen comment followed by a space:
+        # ///< Header comment
         match = (Search(r'[=/-]{4,}\s*$', line[commentend:]) or
                  Search(r'^/$', line[commentend:]) or
-                 Search(r'^/+ ', line[commentend:]))
+                 Search(r'^/+<? ', line[commentend:]))
         if not match:
           error(filename, linenum, 'whitespace/comments', 4,
                 'Should have a space between // and comment')
