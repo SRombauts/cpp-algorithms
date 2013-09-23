@@ -15,7 +15,7 @@
 
 
 int main() {
-  printf("Hash::sdbm('test')=%lx\n", Hash::sdbm("test"));
+  printf("Hash::sdbm('test')=%x\n", Hash::sdbm("test"));
 
   return 0;
 }
