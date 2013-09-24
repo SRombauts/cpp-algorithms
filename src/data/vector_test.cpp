@@ -19,7 +19,7 @@
 
 // Test Vector constructors.
 TEST(Vector, ctor) {
-  Vector vec1;
+  Vector<int> vec1;
   EXPECT_EQ(0, vec1.GetCapacity());
   EXPECT_EQ(0, vec1.GetSize());
 }
@@ -27,7 +27,7 @@ TEST(Vector, ctor) {
 // Test Vector reserving.
 TEST(Vector, Reserve) {
   // Reserving in a vector of size 0
-  Vector vec1;
+  Vector<int>  vec1;
   vec1.Reserve(0);
   EXPECT_EQ(0, vec1.GetCapacity());
   EXPECT_EQ(0, vec1.GetSize());
@@ -47,7 +47,7 @@ TEST(Vector, Reserve) {
 
 // Test Vector appending and truncating.
 TEST(Vector, AppendTruncate) {
-  Vector vec1;
+  Vector<int>  vec1;
   // Append
   for (size_t idx = 0; idx < 1024; ++idx) {
     int     value = idx;

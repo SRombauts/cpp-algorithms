@@ -22,7 +22,7 @@ add_executable (CppAlgorithms
  src/algo/hash.cpp src/algo/hash.h
  src/algo/random.cpp src/algo/random.h
  src/base/utils.h
- src/data/vector.cpp src/data/vector.h
+ src/data/vector.h
 )
 
 add_custom_target(cpplint
@@ -41,7 +41,7 @@ add_executable (TestAlgorithms
  src/algo/hash.cpp src/algo/hash.h src/algo/hash_test.cpp
  src/algo/random.cpp src/algo/random.h src/algo/random_test.cpp
  src/base/utils.h
- src/data/vector.cpp src/data/vector.h src/data/vector_test.cpp
+ src/data/vector.h src/data/vector_test.cpp
 )
 target_link_libraries (TestAlgorithms gtest_main)
 

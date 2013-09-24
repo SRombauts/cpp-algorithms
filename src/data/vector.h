@@ -1,7 +1,7 @@
 /**
  * @file    vector.h
  * @ingroup data
- * @brief   Implementation of dynamic array (a "vector") of int (not a template).
+ * @brief   Implementation of dynamic array (a "vector") of type T
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
@@ -11,21 +11,33 @@
 #ifndef SRC_DATA_VECTOR_H_
 #define SRC_DATA_VECTOR_H_
 
-#include "base/utils.h"
+#include <cstring>        // memcpy
+#include <stdexcept>      // out_of_range
+
+#include "base/utils.h"   // DISALLOW_COPY_AND_ASSIGN
 
 /**
- * @brief Implementation of dynamic array (a "vector") of int (not a template).
+ * @brief Implementation of dynamic array (a "vector") of type T
  *
- * @todo(SRombauts) comments and complexity annotations
- * @todo(SRombauts) Template
  * @todo(SRombauts) Iterator
  */
+template<class T>
 class Vector {
  public:
-  /// @brief Constructor
-  Vector();
+  /// @brief Alias for the managed type
+  typedef T element_type;
+
+  /// @brief Public default constructor
+  Vector()
+    : array_(nullptr), capacity_(0), size_(0) {
+  }
+
   /// @brief Destructor: no need for virtual dtor
-  ~Vector();
+  ~Vector() {
+    if (array_ != nullptr) {
+      delete [] array_;
+    }
+  }
 
   /**
    * @brief Increase the capacity of the array.
@@ -37,7 +49,17 @@ class Vector {
    *
    * @param[in] capacity  Capacity required for the new array.
    */
-  void Reserve(const size_t capacity);
+  void Reserve(const size_t capacity) {
+    if (capacity_ < capacity) {
+      const T* old_array = array_;
+      // allocate a new array
+      array_    = new T[capacity];  // can throw std::bad_alloc
+      capacity_ = capacity;
+      // copy old data, then destroy the old array
+      std::memcpy(array_, old_array, size_*sizeof(array_[0]));
+      delete [] old_array;
+    }
+  }
 
   /**
    * @brief Append a value at the end of the array.
@@ -49,7 +71,16 @@ class Vector {
    *
    * @param[in] value Value tu copy at the back of the array.
    */
-  void Append(const int value);
+  void Append(const T& value) {
+    if (size_ == capacity_) {
+      // reserve more space if needed: 0,10,23,39,60,88,124,171,232,311,414...
+      size_t new_capacity = static_cast<size_t>(capacity_ * 1.3 + 10);
+      Reserve(new_capacity);
+    }
+    // append value
+    array_[size_] = value;
+    size_ += 1;
+  }
 
   /**
    * @brief Truncate the array by reducing its size.
@@ -61,7 +92,12 @@ class Vector {
    *
    * @param[in] size  New (smaller) size of the array.
    */
-  void Truncate(const size_t size);
+  void Truncate(const size_t size) {
+    if (size < size_) {
+      // simply resize
+      size_ = size;
+    }
+  }
 
   /**
    * @brief Access element at given index.
@@ -72,8 +108,20 @@ class Vector {
    *
    * @param[in] idx Index (0-based) of the element to access.
    */
-  const int& At(const size_t idx) const;
-        int& At(const size_t idx);
+  const T& At(const size_t idx) const {
+    // basic boundary check
+    if (idx >= size_) {
+      throw std::out_of_range("Vector::At: idx >= size_");
+    }
+    return array_[idx];
+  }
+  T& At(const size_t idx) {
+    // basic boundary check
+    if (idx >= size_) {
+      throw std::out_of_range("Vector::At: idx >= size_");
+    }
+    return array_[idx];
+  }
 
   /**
    * @brief Returns the capacity (size of the underlying array).
@@ -89,10 +137,11 @@ class Vector {
   }
 
  private:
-  int*    array_;     ///< Pointer to the underlying raw heap-allocated array
+  T*      array_;     ///< Pointer to the underlying raw heap-allocated array
   size_t  capacity_;  ///< Capacity of the underlying array
   size_t  size_;      ///< Size of the used part of the array
 
+  // Forbid
   DISALLOW_COPY_AND_ASSIGN(Vector);
 };
 
