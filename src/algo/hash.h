@@ -8,9 +8,7 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-
-#ifndef SRC_ALGO_HASH_H_
-#define SRC_ALGO_HASH_H_
+#pragma once
 
 /**
  * @brief Simple Hash functions.
@@ -28,4 +26,3 @@ class Hash {
   static unsigned int djb2(const char* str);
 };
 
-#endif  // SRC_ALGO_HASH_H_

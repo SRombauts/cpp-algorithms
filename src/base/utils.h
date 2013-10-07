@@ -8,8 +8,7 @@
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
  */
-#ifndef SRC_BASE_UTILS_H_
-#define SRC_BASE_UTILS_H_
+#pragma once
 
 #include <cstddef>
 
@@ -35,4 +34,3 @@
 #define snprintf _snprintf
 #endif
 
-#endif  // SRC_BASE_UTILS_H_
