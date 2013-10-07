@@ -13,7 +13,11 @@
 
 #include "algo/hash.h"
 
-
+/**
+ * @brief For experimenting
+ *
+ * @todo(SRombauts) Evaluate different initial value for Hash::sdbm() (see Hash::djb2)
+*/
 int main() {
   printf("Hash::sdbm('test')=%x\n", Hash::sdbm("test"));
 
