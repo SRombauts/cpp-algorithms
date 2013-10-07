@@ -1191,7 +1191,7 @@ def CheckForHeaderGuard(filename, lines, error):
   if ifndef != cppvar:
     error_level = 0
     if ifndef != cppvar + '_':
-      error_level = 5
+      error_level = 2
 
     ParseNolintSuppressions(filename, lines[ifndef_linenum], ifndef_linenum,
                             error)
@@ -1199,7 +1199,7 @@ def CheckForHeaderGuard(filename, lines, error):
           '#ifndef header guard has wrong style, please use: %s' % cppvar)
 
   if define != ifndef:
-    error(filename, 0, 'build/header_guard', 5,
+    error(filename, 0, 'build/header_guard', 2,
           '#ifndef and #define don\'t match, suggested CPP variable is: %s' %
           cppvar)
     return
@@ -1207,7 +1207,7 @@ def CheckForHeaderGuard(filename, lines, error):
   if endif != ('#endif  // %s' % cppvar):
     error_level = 0
     if endif != ('#endif  // %s' % (cppvar + '_')):
-      error_level = 5
+      error_level = 2
 
     ParseNolintSuppressions(filename, lines[endif_linenum], endif_linenum,
                             error)
