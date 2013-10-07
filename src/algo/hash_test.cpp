@@ -14,7 +14,7 @@
 #include <limits>
 
 #include "gtest/gtest.h"
-#include "algo/random.h"
+#include "base/random.h"
 #include "base/utils.h"
 
 

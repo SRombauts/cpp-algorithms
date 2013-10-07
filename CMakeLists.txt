@@ -20,7 +20,7 @@ endif()
 add_executable (CppAlgorithms
  src/main.cpp
  src/algo/hash.cpp src/algo/hash.h
- src/algo/random.cpp src/algo/random.h
+ src/base/random.cpp src/base/random.h
  src/base/utils.h
  src/data/vector.h
 )
@@ -39,7 +39,7 @@ include_directories ("${PROJECT_SOURCE_DIR}/src")
 # add the test executable
 add_executable (TestAlgorithms
  src/algo/hash.cpp src/algo/hash.h src/algo/hash_test.cpp
- src/algo/random.cpp src/algo/random.h src/algo/random_test.cpp
+ src/base/random.cpp src/base/random.h src/base/random_test.cpp
  src/base/utils.h
  src/data/vector.h src/data/vector_test.cpp
 )

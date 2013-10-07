@@ -1,6 +1,6 @@
 /**
  * @file    random_test.cpp
- * @ingroup algo
+ * @ingroup base
  * @brief   Random utility functions.
  *
  * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
@@ -9,7 +9,7 @@
  * or copy at http://opensource.org/licenses/MIT)
  */
 
-#include "algo/random.h"
+#include "base/random.h"
 
 #include <limits>
 

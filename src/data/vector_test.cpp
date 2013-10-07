@@ -13,7 +13,7 @@
 
 #include <limits>
 
-#include "algo/random.h"
+#include "base/random.h"
 #include "gtest/gtest.h"
 
 
