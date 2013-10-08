@@ -15,7 +15,7 @@
 unsigned int Hash::sdbm(const char* str) {
   unsigned int hash = 0;
 
-  for (unsigned int idx = 0; str[idx] != 0; idx++) {
+  for (unsigned int idx = 0; str[idx] != 0; ++idx) {
     // hash = hash * 65599 + char
     hash = (hash << 6) + (hash << 16) - hash + str[idx];
   }
@@ -27,7 +27,7 @@ unsigned int Hash::sdbm(const char* str) {
 unsigned int Hash::djb2(const char* str) {
   unsigned int hash = 5381;
 
-  for (unsigned int idx = 0; str[idx] != 0; idx++) {
+  for (unsigned int idx = 0; str[idx] != 0; ++idx) {
     // hash = hash * 33 + c
     hash = ((hash << 5) + hash) + str[idx];
   }

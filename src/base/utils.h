@@ -1,5 +1,5 @@
 /**
- * @file    util.h
+ * @file    utils.h
  * @ingroup base
  * @brief   Shared utility macros and functions.
  *
