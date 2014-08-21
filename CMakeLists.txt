@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+# Copyright (c) 2013-2014 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 #
 # Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 # or copy at http://opensource.org/licenses/MIT)
@@ -6,15 +6,24 @@
 cmake_minimum_required (VERSION 2.6)
 project (CppAlgorithms)
 
-if(MSVC)
+# Print some standard CMake variables
+message(STATUS "CMAKE_SYSTEM_NAME/_VERSION      '${CMAKE_SYSTEM_NAME}' '${CMAKE_SYSTEM_VERSION}'")
+message(STATUS "CMAKE_CXX_COMPILER_ID/_VERSION  '${CMAKE_CXX_COMPILER_ID}' '${CMAKE_CXX_COMPILER_VERSION}'")
+if (NOT MSVC)
+    message(STATUS "CMAKE_BUILD_TYPE                '${CMAKE_BUILD_TYPE}'")
+endif (NOT MSVC)
+
+# Define useful variables to handle OS/Compiler differences
+if (MSVC)
+    # Flags for linking with multithread static C and C++ runtime
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
     set(CCPPLINT_ARG_OUTPUT "--output=vs7")
     add_definitions (/D_CRT_SECURE_NO_WARNINGS)
-else()
+else ()
     set(CCPPLINT_ARG_OUTPUT "--output=eclipse")
     add_definitions (-std=c++0x)  # -std=c++11
-endif()
+endif ()
 set(CCPPLINT_ARG_VERBOSE "--verbose=3")
 
 # add the application executable

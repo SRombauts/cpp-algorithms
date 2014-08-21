@@ -1831,7 +1831,7 @@ def CheckForNonStandardConstructs(filename, clean_lines, linenum,
 
   if Search(r'\b(const|volatile|void|char|short|int|long'
             r'|float|double|signed|unsigned'
-            r'|schar|u?int8|u?int16|u?int32|u?int64)'
+            r'|schar|u?int8_t|u?int16_t|u?int32_t|u?int64_t)'
             r'\s+(register|static|extern|typedef)\b',
             line):
     error(filename, linenum, 'build/storage_class', 5,
@@ -3245,7 +3245,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
   # probably a member operator declaration or default constructor.
   match = Search(
       r'(\bnew\s+)?\b'  # Grab 'new' operator, if it's there
-      r'(int|float|double|bool|char|int32|uint32|int64|uint64)\([^)]', line)
+      r'(int|float|double|bool|char|int32_t|uint32_t|int64_t|uint64_t)\([^)]', line)
   if match:
     # gMock methods are defined using some variant of MOCK_METHODx(name, type)
     # where type may be float(), int(string), etc.  Without context they are
@@ -3339,8 +3339,8 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
   else:
     match = Search(r'\b(short|long(?! +double)|long long)\b', line)
     if match:
-      error(filename, linenum, 'runtime/int', 2,
-            'Use int16/int64/etc, rather than the C type %s' % match.group(1))
+      error(filename, linenum, 'runtime/int', 3,
+            'Use int8_t/int32_t/int64_t/etc, rather than the C type %s' % match.group(1))
 
   # When snprintf is used, the second argument shouldn't be a literal.
   match = Search(r'snprintf\s*\(([^,]*),\s*([0-9]*)\s*,', line)

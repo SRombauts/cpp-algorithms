@@ -26,12 +26,12 @@ TEST(Hash, sdbm) {
   char str1[NB_CHAR+1];
   char str2[NB_CHAR+1];
   // Get 1000 random strings
-  for (unsigned int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000; ++i) {
     Random::GenString(str1, NB_CHAR);
     const unsigned int hash1 = Hash::sdbm(str1);
 
     // Change only one bit of the string
-    for (unsigned int j = 0; j < NB_CHAR*7; ++j) {
+    for (int j = 0; j < NB_CHAR*7; ++j) {
       snprintf(str2, NB_CHAR, "%s", str1);
       str2[j/7] ^= static_cast<char>(0x01 << (j%7));
 
@@ -51,12 +51,12 @@ TEST(Hash, djb2) {
   char str1[NB_CHAR+1];
   char str2[NB_CHAR+1];
   // Get 1000 random strings
-  for (unsigned int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000; ++i) {
     Random::GenString(str1, NB_CHAR);
     const unsigned int hash1 = Hash::djb2(str1);
 
     // Change only one bit of the string
-    for (unsigned int j = 0; j < NB_CHAR*7; ++j) {
+    for (int j = 0; j < NB_CHAR*7; ++j) {
       snprintf(str2, NB_CHAR, "%s", str1);
       str2[j/7] ^= static_cast<char>(0x01 << (j%7));
 

@@ -19,7 +19,7 @@
  * @todo(SRombauts) Evaluate different initial value for Hash::sdbm() (see Hash::djb2)
 */
 int main() {
-  printf("Hash::sdbm('test')=%lx\n", Hash::sdbm("test"));
+  printf("Hash::sdbm('test')=%x\n", Hash::sdbm("test"));
 
   return 0;
 }
