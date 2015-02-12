@@ -1,9 +1,9 @@
-# Copyright (c) 2013-2014 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+# Copyright (c) 2013-2015 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 #
 # Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 # or copy at http://opensource.org/licenses/MIT)
 
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required(VERSION 2.6)
 project (CppAlgorithms)
 
 # Print some standard CMake variables
@@ -17,14 +17,17 @@ endif (NOT MSVC)
 if (MSVC)
     # Flags for linking with multithread static C and C++ runtime
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-    set(CCPPLINT_ARG_OUTPUT "--output=vs7")
+    set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+    set(CPPLINT_ARG_OUTPUT      "--output=vs7")
     add_definitions (/D_CRT_SECURE_NO_WARNINGS)
-else ()
-    set(CCPPLINT_ARG_OUTPUT "--output=eclipse")
+else (MSVC)
+    message(STATUS "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
+
+    set(CPPLINT_ARG_OUTPUT      "--output=eclipse")
     add_definitions (-std=c++0x)  # -std=c++11
 endif ()
-set(CCPPLINT_ARG_VERBOSE "--verbose=3")
+set(CPPLINT_ARG_LINELENGTH "--linelength=120")
+set(CPPLINT_ARG_VERBOSE    "--verbose=2")
 
 # add the application executable
 add_executable (CppAlgorithms
@@ -35,10 +38,10 @@ add_executable (CppAlgorithms
  src/data/vector.h
 )
 
-# add a cpplint target
+# add a cpplint target to the "all" target
 add_custom_target(cpplint
  ALL
- COMMAND python ${PROJECT_SOURCE_DIR}/cpplint.py ${CCPPLINT_ARG_OUTPUT} ${CCPPLINT_ARG_VERBOSE} ${PROJECT_SOURCE_DIR}/src/*.* ${PROJECT_SOURCE_DIR}/src/*/*.* 
+ COMMAND python ${PROJECT_SOURCE_DIR}/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${PROJECT_SOURCE_DIR}/src/*.*
 )
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
