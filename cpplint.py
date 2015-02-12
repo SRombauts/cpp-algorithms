@@ -625,7 +625,9 @@ class _CppLintState(object):
     for category, count in self.errors_by_category.iteritems():
       sys.stderr.write('cpplint: Category \'%s\' errors found: %d\n' %
                        (category, count))
-    sys.stderr.write('cpplint: Total errors found: %d\n' % self.error_count)
+  # SRombauts: print nothing if 0 error
+    if 0 < self.error_count:
+      sys.stderr.write('cpplint: Total errors found: %d\n' % self.error_count)
 
 _cpplint_state = _CppLintState()
 
@@ -1829,6 +1831,7 @@ def CheckForNonStandardConstructs(filename, clean_lines, linenum,
   # For the rest, work with both comments and strings removed.
   line = clean_lines.elided[linenum]
 
+  # SRombauts: switched to standard types from <cstdin> (int8 -> int8_t)
   if Search(r'\b(const|volatile|void|char|short|int|long'
             r'|float|double|signed|unsigned'
             r'|schar|u?int8_t|u?int16_t|u?int32_t|u?int64_t)'
@@ -2868,7 +2871,8 @@ def CheckStyle(filename, clean_lines, linenum, file_extension, nesting_state,
     error(filename, linenum, 'whitespace/end_of_line', 4,
           'Line ends in whitespace.  Consider deleting these extra spaces.')
   # There are certain situations we allow one space, notably for labels
-  elif ((initial_spaces == 1 or initial_spaces == 3) and
+  # SRombauts: switched to 4 spaces indent
+  elif ((initial_spaces in (1,2,3,5,6,7)) and
         not Match(r'\s*\w+\s*:\s*$', cleansed_line)):
     error(filename, linenum, 'whitespace/indent', 3,
           'Weird number of spaces at line-start.  '
@@ -3243,6 +3247,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
   # I just try to capture the most common basic types, though there are more.
   # Parameterless conversion functions, such as bool(), are allowed as they are
   # probably a member operator declaration or default constructor.
+  # SRombauts: switched to standard types from <cstdin> (int8 -> int8_t)
   match = Search(
       r'(\bnew\s+)?\b'  # Grab 'new' operator, if it's there
       r'(int|float|double|bool|char|int32_t|uint32_t|int64_t|uint64_t)\([^)]', line)
@@ -3337,6 +3342,7 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension, include_state,
       error(filename, linenum, 'runtime/int', 4,
             'Use "unsigned short" for ports, not "short"')
   else:
+    # SRombauts: switched to standard types from <cstdin> (int8 -> int8_t)
     match = Search(r'\b(short|long(?! +double)|long long)\b', line)
     if match:
       error(filename, linenum, 'runtime/int', 3,

@@ -15,8 +15,8 @@
 // A macro to disallow the copy constructor and operator= functions
 // This should be used in the private: declarations for a class
 #define DISALLOW_COPY_AND_ASSIGN(TypeName) \
-  TypeName(const TypeName&);               \
-  void operator=(const TypeName&)
+    TypeName(const TypeName&);             \
+    void operator=(const TypeName&)
 
 // A macro to enable the use of the nullptr keyword (NULL on older compiler)
 #ifdef _MSC_VER

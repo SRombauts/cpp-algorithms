@@ -16,15 +16,15 @@
  * @brief Random utility functions.
  */
 class Random {
- public:
-  /**
-   * @brief Generate a printable alphanumeric character.
-   */
-  static char GenChar();
+public:
+    /**
+     * @brief Generate a printable alphanumeric character.
+     */
+    static char GenChar();
 
-  /**
-   * @brief Generate a printable alphanumeric string.
-   */
-  static void GenString(char* str, size_t len);
+    /**
+     * @brief Generate a printable alphanumeric string.
+     */
+    static void GenString(char* str, size_t len);
 };
 

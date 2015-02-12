@@ -16,14 +16,14 @@
 #include "gtest/gtest.h"
 
 TEST(Random, GenChar) {
-  EXPECT_NE(Random::GenChar(), Random::GenChar());
+    EXPECT_NE(Random::GenChar(), Random::GenChar());
 }
 
 TEST(Random, GenString) {
-  #define NB_CHAR 10
-  char str1[NB_CHAR+1] = "";
-  char str2[NB_CHAR+1] = "";
-  Random::GenString(str1, NB_CHAR);
-  Random::GenString(str2, NB_CHAR);
-  EXPECT_STRNE(str1, str2);
+    #define NB_CHAR 10
+    char str1[NB_CHAR+1] = "";
+    char str2[NB_CHAR+1] = "";
+    Random::GenString(str1, NB_CHAR);
+    Random::GenString(str2, NB_CHAR);
+    EXPECT_STRNE(str1, str2);
 }

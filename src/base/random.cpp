@@ -15,19 +15,19 @@
 
 // Generate a printable alphanumeric character.
 char Random::GenChar() {
-  static const char alphanum[] =
-    "0123456789"
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    "abcdefghijklmnopqrstuvwxyz";
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
 
-  return alphanum[std::rand() % (sizeof(alphanum) - 1)]; // NOLINT
+    return alphanum[std::rand() % (sizeof(alphanum) - 1)]; // NOLINT
 }
 
 // Generate a printable alphanumeric string.
 void Random::GenString(char* str, size_t len) {
-  for (size_t i = 0; i < len; ++i) {
-    str[i] = Random::GenChar();
-  }
+    for (size_t i = 0; i < len; ++i) {
+        str[i] = Random::GenChar();
+    }
 
-  str[len] = '\0';
+    str[len] = '\0';
 }
