@@ -21,8 +21,6 @@ if (MSVC)
     set(CPPLINT_ARG_OUTPUT      "--output=vs7")
     add_definitions (/D_CRT_SECURE_NO_WARNINGS)
 else (MSVC)
-    message(STATUS "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}")
-
     set(CPPLINT_ARG_OUTPUT      "--output=eclipse")
     add_definitions (-std=c++0x)  # -std=c++11
 endif ()
@@ -41,7 +39,7 @@ add_executable (CppAlgorithms
 # add a cpplint target to the "all" target
 add_custom_target(cpplint
  ALL
- COMMAND python ${PROJECT_SOURCE_DIR}/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${PROJECT_SOURCE_DIR}/src/*.*
+ COMMAND python ${PROJECT_SOURCE_DIR}/cpplint/cpplint.py ${CPPLINT_ARG_OUTPUT} ${CPPLINT_ARG_LINELENGTH} ${CPPLINT_ARG_VERBOSE} ${PROJECT_SOURCE_DIR}/src/* ${PROJECT_SOURCE_DIR}/src/*/*
 )
 
 # add the subdirectory containing the CMakeLists.txt for the gtest library
