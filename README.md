@@ -5,7 +5,7 @@ cpp-algorithms
 
 Experimenting with well known algorithms and data structures.
 
-Copyright (c) 2013 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+Copyright (c) 2013-2015 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 
 ## Building & testing with CMake
 
@@ -26,12 +26,12 @@ cmake --build . # make
 ctest .         # make test
 ```
 
-### Debug build
+### Debug build for Unix Makefiles
 
 ```bash
 mkdir Debug
 cd Debug
-cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
+cmake .. -DCMAKE_BUILD_TYPE=Debug   # -G "Unix Makefiles"
 cmake --build . # make
 ctest .         # make test
 ```
@@ -41,7 +41,7 @@ ctest .         # make test
 ```bash
 mkdir Release
 cd Release
-cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release  # -G "Unix Makefiles"
 cmake --build . # make
 ctest .         # make test
 ```
