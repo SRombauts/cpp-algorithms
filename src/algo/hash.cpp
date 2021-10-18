@@ -41,7 +41,7 @@ uint32_t Hash::fnv1a32(const char* apStr) {
 
     for (uint32_t idx = 0; apStr[idx] != 0; ++idx) {
         // 32 bit FNV_prime = 224 + 28 + 0x93 = 16777619
-        hash = (16777619U * hash) ^ static_cast<unsigned char>(apStr[idx]);
+        hash = 16777619U * (hash ^ static_cast<unsigned char>(apStr[idx]));
     }
 
     return hash;
@@ -53,7 +53,7 @@ uint64_t Hash::fnv1a64(const char* apStr) {
 
     for (uint32_t idx = 0; apStr[idx] != 0; ++idx) {
         // 64 bit FNV_prime = 240 + 28 + 0xb3 = 1099511628211
-        hash = (1099511628211ULL * hash) ^ static_cast<unsigned char>(apStr[idx]);
+        hash = 1099511628211ULL * (hash ^ static_cast<unsigned char>(apStr[idx]));
     }
 
     return hash;
