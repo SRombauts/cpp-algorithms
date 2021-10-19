@@ -91,3 +91,13 @@ TEST(Hash, fnv1a32) {
         }
     }
 }
+
+// Test against reference implementation for a few text values (empty string, "test" string", etc)
+TEST(Hash, fnv1a32_reference) {
+    EXPECT_EQ(Hash::fnv1a32(""), 0x811c9dc5);
+	EXPECT_EQ(Hash::fnv1a32("a"), 0xe40c292c);
+	EXPECT_EQ(Hash::fnv1a32("test"), 0xafd071e5);
+
+    // failure
+	EXPECT_NE(Hash::fnv1a32("nope"), 0xafd071e5);
+}
