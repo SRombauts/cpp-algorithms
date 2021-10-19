@@ -1,4 +1,4 @@
-# Copyright (c) 2013-2015 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+# Copyright (c) 2013-2021 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 #
 # Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
 # or copy at http://opensource.org/licenses/MIT)
@@ -19,7 +19,7 @@ if (MSVC)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
     set(CPPLINT_ARG_OUTPUT      "--output=vs7")
-    add_definitions (/D_CRT_SECURE_NO_WARNINGS)
+    add_definitions (/D_CRT_SECURE_NO_WARNINGS /D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING)
 else (MSVC)
     set(CPPLINT_ARG_OUTPUT      "--output=eclipse")
     add_definitions (-std=c++0x)  # -std=c++11
@@ -34,6 +34,13 @@ add_executable (CppAlgorithms
  src/base/random.cpp src/base/random.h
  src/base/utils.h
  src/data/vector.h
+
+ .travis.yml
+ appveyor.yml
+ build.bat
+ build.sh
+ LICENSE.txt
+ README.md
 )
 
 # add a cpplint target to the "all" target

@@ -5,7 +5,7 @@ cpp-algorithms
 
 Experimenting with well known algorithms and data structures.
 
-Copyright (c) 2013-2015 Sébastien Rombauts (sebastien.rombauts@gmail.com)
+Copyright (c) 2013-2021 Sébastien Rombauts (sebastien.rombauts@gmail.com)
 
 ## Building & testing with CMake
 

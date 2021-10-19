@@ -3,7 +3,7 @@
  * @ingroup data
  * @brief   Implementation of dynamic array (a "vector").
  *
- * Copyright (c) 2013 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+ * Copyright (c) 2013-2021 Sebastien Rombauts (sebastien.rombauts@gmail.com)
  *
  * Distributed under the MIT License (MIT) (See accompanying file LICENSE.txt
  * or copy at http://opensource.org/licenses/MIT)
@@ -50,7 +50,7 @@ TEST(Vector, AppendTruncate) {
     Vector<int>  vec1;
     // Append
     for (size_t idx = 0; idx < 1024; ++idx) {
-        int     value = idx;
+        int     value = static_cast<int>(idx);
         size_t  size  = idx+1;
         vec1.Append(value);
         EXPECT_EQ(size, vec1.GetSize());
@@ -60,7 +60,7 @@ TEST(Vector, AppendTruncate) {
     const size_t final_capacity = vec1.GetCapacity();
         // Recheck all values
         for (size_t idx = 0; idx < 1024; ++idx) {
-        int value = idx;
+        int value = static_cast<int>(idx);
         EXPECT_EQ(value, vec1.At(idx));
     }
     // Truncate
@@ -74,7 +74,7 @@ TEST(Vector, AppendTruncate) {
         EXPECT_EQ(final_capacity, vec1.GetCapacity());
     // Re-Append
     for (size_t idx = 0; idx < 1024; ++idx) {
-        int     value = idx;
+        int     value = static_cast<int>(idx);
         size_t  size  = idx+1;
         vec1.Append(value);
         EXPECT_EQ(size, vec1.GetSize());
@@ -83,7 +83,7 @@ TEST(Vector, AppendTruncate) {
     }
     // Recheck all values
     for (size_t idx = 0; idx < 1024; ++idx) {
-        int value = idx;
+        int value = static_cast<int>(idx);
         EXPECT_EQ(value, vec1.At(idx));
     }
 }
